@@ -1,0 +1,4 @@
+# this is a sample config file. rename it to `config.py` and edit accordingly
+
+# root directory of your library
+library_dir = ''
