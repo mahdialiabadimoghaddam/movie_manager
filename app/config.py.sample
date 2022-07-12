@@ -1,4 +1,17 @@
 # this is a sample config file. rename it to `config.py` and edit accordingly
 
 # root directory of your library
-library_dir = ''
+library_dir = r'M:\Media\Films'
+
+# if any of these keywords are found in a movie name, all the words from that index onward are ignored
+ignore_keywords = [
+    "dubbed",
+    "farsi",
+    "fa",
+    "mkvcage",
+    "bluray",
+    "480p",
+    "720p",
+    "1080p",
+    "mkv",
+]
