@@ -1,5 +1,5 @@
 /*
 !/app
 /app/config.py
-
+/app/__pycache__
 !.gitignore
