@@ -12,13 +12,17 @@ def scan_items(base: str, files_list: list[str]):
             path = normalize_filename(path)
             print(path)
             f.write(
-                "<p>{}</p>".format(path) +
-                "<a target=\"_blank\" href=\"https://www.google.com/search?q={}\">google</a><br>".format(path) +
-                "<a target=\"_blank\" href=\"https://www.google.com/search?q={}\">زیرنویس فارسی</a><br>\r\n".format(path + "زیرنویس فارسی ") +
-                "<a target=\"_blank\" href=\"https://www.google.com/search?q={} subtitle\">زیرنویس انگلیسی</a><br>\r\n".format(path)
+                '''<h1>{}</h1>
+                <a target=\"_blank\" href=\"https://www.google.com/search?q={}\">google</a><br>
+                <a target=\"_blank\" href=\"https://www.google.com/search?q={}\">زیرنویس فارسی</a><br>\r\n
+                <a target=\"_blank\" href=\"https://www.google.com/search?q={} subtitle\">زیرنویس انگلیسی</a><br>\r\n
+                <svg height="10" width="1000">
+                    <line x1="0" y1="0" x2="1000" y2="0" style="stroke:rgb(0, 0, 0);stroke-width:2" />
+                </svg><br>'''.format(path, path, path + "زیرنویس فارسی ", path)
             )
         elif os.path.isdir(absolute_path):
             scan_items(absolute_path, os.listdir(absolute_path))
+
 
 def normalize_filename(name: str):
     split_start_index = 500
