@@ -4,38 +4,7 @@ import config
 
 
 def scan_items(base: str, folder_name: str, files_list: list[str]):
-   f = open(config.save_to + r"\films.html", 'w', encoding="utf-8")
-   f.write('''
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-<style>
-    *{
-        
-        font-family: 'Times New Roman', monospace;
-        
-    }
-    .container{
-        padding-left: 50px;
-        padding-bottom: 20px;
-        padding-top: 10px;
-        border: 1px solid;
-        border-radius: 25px;
-        margin-left: 10px;
-        margin-right: 300px;
-        
-    }
-    .innerContainer {
-        
-    }
-    a {
-        text-decoration:none;
-        font-size: 1rem;
-    }
-    a:visited {
-        color: blue;
-    }
-    
-</style>
-    ''')
+    f = open(config.save_to + r"\films.html", 'a', encoding="utf-8")
     for path in files_list:
         absolute_path = base + "/" + path
         if os.path.isfile(absolute_path) and not path.endswith(".lnk"):
@@ -76,6 +45,31 @@ def normalize_filename(name: str):
     return name[:split_start_index].replace(".", " ").replace("_", " ")
 
 
-if os.path.exists(os.path.join(config.save_to, "films.html")):
-    os.remove(os.path.join(config.save_to, "films.html"))
+f = open(config.save_to + r"\films.html", 'w', encoding="utf-8")
+f.write('''
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <style>
+    *{font-family: 'Times New Roman', monospace;}
+    .container{
+        padding-left: 50px;
+        padding-bottom: 20px;
+        padding-top: 10px;
+        border: 1px solid;
+        border-radius: 25px;
+        margin-left: 10px;
+        margin-right: 300px;
+    }
+    .innerContainer {}
+    a {
+        text-decoration:none;
+        font-size: 1rem;
+    }
+    a:visited {
+        color: blue;
+    }
+    </style>
+    ''')
+    
+
 scan_items(config.library_dir, os.path.basename(config.library_dir), os.listdir(config.library_dir))
+
