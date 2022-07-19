@@ -30,7 +30,6 @@ def generate_html(path: str, folder_name: str, file_name: str):
 def normalize_filename(name: str):
     split_start_index = 500
     for keyword in config.ignore_keywords:
-        keyword_start_index = None
         if (keyword_start_index := name.lower().find(keyword)) != -1:
             split_start_index = min(keyword_start_index, split_start_index)
 
