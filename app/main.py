@@ -4,7 +4,38 @@ import config
 
 
 def scan_items(base: str, folder_name: str, files_list: list[str]):
-    f = open(config.save_to + r"\films.html", 'a', encoding="utf-8")
+   f = open(config.save_to + r"\films.html", 'w', encoding="utf-8")
+   f.write('''
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<style>
+    *{
+        
+        font-family: 'Times New Roman', monospace;
+        
+    }
+    .container{
+        padding-left: 50px;
+        padding-bottom: 20px;
+        padding-top: 10px;
+        border: 1px solid;
+        border-radius: 25px;
+        margin-left: 10px;
+        margin-right: 300px;
+        
+    }
+    .innerContainer {
+        
+    }
+    a {
+        text-decoration:none;
+        font-size: 1rem;
+    }
+    a:visited {
+        color: blue;
+    }
+    
+</style>
+    ''')
     for path in files_list:
         absolute_path = base + "/" + path
         if os.path.isfile(absolute_path) and not path.endswith(".lnk"):
@@ -17,14 +48,22 @@ def scan_items(base: str, folder_name: str, files_list: list[str]):
 
 
 def generate_html(path: str, folder_name: str, file_name: str):
-    return '''<h2>{}</h2>
-                {}<br>
-                <a target=\"_blank\" href=\"https://www.google.com/search?q={}\">google</a><br>
-                <a target=\"_blank\" href=\"https://www.google.com/search?q={}\">زیرنویس فارسی</a><br>
-                <a target=\"_blank\" href=\"https://www.google.com/search?q={} subtitle\">زیرنویس انگلیسی</a><br>
-                <svg height="10" width="1000">
-                    <line x1="0" y1="0" x2="1000" y2="0" style="stroke:rgb(0, 0, 0);stroke-width:2" />
-                </svg><br>'''.format(path + "[{}]".format(folder_name), file_name, path, path + "زیرنویس فارسی ", path)
+    return '''  <div class="container">
+                <h1>{}</h1>
+                <div class="innerConatiner">
+                <p>{}</p><br>
+                <a target=\"_blank\" href=\"https://www.google.com/search?q={}\">google</a>
+                <i class="material-icons" style="font-size: 18px;" >download</i>
+                <br>
+                <a target=\"_blank\" href=\"https://www.google.com/search?q={}\">زیرنویس فارسی</a>
+                <i class="material-icons" style="font-size: 18px;" >download</i>
+                <br>
+                <a target=\"_blank\" href=\"https://www.google.com/search?q={} subtitle\">زیرنویس انگلیسی</a>
+                <i class="material-icons" style="font-size: 18px;" >download</i>
+                <br>
+                </div>
+                </div>
+                '''.format(path + "[{}]".format(folder_name), file_name, path, path + "زیرنویس فارسی ", path)
 
 
 def normalize_filename(name: str):
