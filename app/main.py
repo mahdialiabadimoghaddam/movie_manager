@@ -34,4 +34,6 @@ def normalize_filename(name: str):
     return name[:split_start_index].replace(".", " ").replace("_", " ")
 
 
-scan_items(config.library_dir, os.listdir(config.library_dir))
+if os.path.exists(os.path.join(config.save_to, "films.html")):
+    os.remove(os.path.join(config.save_to, "films.html"))
+scan_items(config.library_dir, os.path.basename(config.library_dir), os.listdir(config.library_dir))
