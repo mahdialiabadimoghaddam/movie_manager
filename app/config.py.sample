@@ -3,6 +3,9 @@
 # root directory of your library
 library_dir = r'M:\Media\Films'
 
+# save generated file to:
+save_to = r'C:\Users\[YourUser]\Desktop'
+
 # if any of these keywords are found in a movie name, all the words from that index onward are ignored
 ignore_keywords = [
     "dubbed",

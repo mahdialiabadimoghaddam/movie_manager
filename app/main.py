@@ -3,25 +3,28 @@ import os
 import config
 
 
-def scan_items(base: str, files_list: list[str]):
-    f = open("films.html", "a", encoding="utf-8")
+def scan_items(base: str, folder_name: str, files_list: list[str]):
+    f = open(config.save_to + r"\films.html", 'a', encoding="utf-8")
     for path in files_list:
         absolute_path = base + "/" + path
         if os.path.isfile(absolute_path) and not path.endswith(".lnk"):
-            # print(path)
-            path = normalize_filename(path)
             print(path)
             f.write(
-                '''<h1>{}</h1>
-                <a target=\"_blank\" href=\"https://www.google.com/search?q={}\">google</a><br>
-                <a target=\"_blank\" href=\"https://www.google.com/search?q={}\">زیرنویس فارسی</a><br>\r\n
-                <a target=\"_blank\" href=\"https://www.google.com/search?q={} subtitle\">زیرنویس انگلیسی</a><br>\r\n
-                <svg height="10" width="1000">
-                    <line x1="0" y1="0" x2="1000" y2="0" style="stroke:rgb(0, 0, 0);stroke-width:2" />
-                </svg><br>'''.format(path, path, path + "زیرنویس فارسی ", path)
+                generate_html(normalize_filename(path), folder_name, path)
             )
         elif os.path.isdir(absolute_path):
-            scan_items(absolute_path, os.listdir(absolute_path))
+            scan_items(absolute_path, os.path.basename(absolute_path), os.listdir(absolute_path))
+
+
+def generate_html(path: str, folder_name: str, file_name: str):
+    return '''<h2>{}</h2>
+                {}<br>
+                <a target=\"_blank\" href=\"https://www.google.com/search?q={}\">google</a><br>
+                <a target=\"_blank\" href=\"https://www.google.com/search?q={}\">زیرنویس فارسی</a><br>
+                <a target=\"_blank\" href=\"https://www.google.com/search?q={} subtitle\">زیرنویس انگلیسی</a><br>
+                <svg height="10" width="1000">
+                    <line x1="0" y1="0" x2="1000" y2="0" style="stroke:rgb(0, 0, 0);stroke-width:2" />
+                </svg><br>'''.format(path + "[{}]".format(folder_name), file_name, path, path + "زیرنویس فارسی ", path)
 
 
 def normalize_filename(name: str):
