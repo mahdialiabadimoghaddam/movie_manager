@@ -26,13 +26,13 @@ def generate_html(path: str, folder_name: str, file_name: str):
         <p>{}</p>
         <br>
         <a target=\"_blank\" href=\"https://www.google.com/search?q={}\">google</a>
-        <i class="material-icons" style="font-size: 18px;" >download</i>
+        <i class="material-icons" style="font-size: 18px;" >search</i>
         <br>
         <a target=\"_blank\" href=\"https://www.google.com/search?q={}\">زیرنویس فارسی</a>
-        <i class="material-icons" style="font-size: 18px;" >download</i>
+        <i class="material-icons" style="font-size: 18px;" >subtitles</i>
         <br>
         <a target=\"_blank\" href=\"https://www.google.com/search?q={} subtitle\">زیرنویس انگلیسی</a>
-        <i class="material-icons" style="font-size: 18px;" >download</i>
+        <i class="material-icons" style="font-size: 18px;" >subtitles</i>
         <br>
     </div>
 </div>'''.format(
@@ -53,7 +53,7 @@ f = open(config.save_to + r"\films.html", 'w', encoding="utf-8")
 f.write('''
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <style>
-    *{font-family: 'Times New Roman', monospace;}
+    *{font-family: 'Tahoma', monospace;}
     .container{
         padding-left: 50px;
         padding-bottom: 20px;
