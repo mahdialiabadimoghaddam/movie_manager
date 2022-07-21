@@ -17,22 +17,25 @@ def scan_items(base: str, folder_name: str, files_list: list[str]):
 
 
 def generate_html(path: str, folder_name: str, file_name: str):
-    return '''  <div class="container">
-                <h1>{}</h1>
-                <div class="innerConatiner">
-                <p>{}</p><br>
-                <a target=\"_blank\" href=\"https://www.google.com/search?q={}\">google</a>
-                <i class="material-icons" style="font-size: 18px;" >download</i>
-                <br>
-                <a target=\"_blank\" href=\"https://www.google.com/search?q={}\">زیرنویس فارسی</a>
-                <i class="material-icons" style="font-size: 18px;" >download</i>
-                <br>
-                <a target=\"_blank\" href=\"https://www.google.com/search?q={} subtitle\">زیرنویس انگلیسی</a>
-                <i class="material-icons" style="font-size: 18px;" >download</i>
-                <br>
-                </div>
-                </div>
-                '''.format(path + "[{}]".format(folder_name), file_name, path, path + "زیرنویس فارسی ", path)
+    return '''
+<div class="container">
+    <h1>{}</h1>
+    <div class="innerContainer">
+        <p>{}</p>
+        <br>
+        <a target=\"_blank\" href=\"https://www.google.com/search?q={}\">google</a>
+        <i class="material-icons" style="font-size: 18px;" >download</i>
+        <br>
+        <a target=\"_blank\" href=\"https://www.google.com/search?q={}\">زیرنویس فارسی</a>
+        <i class="material-icons" style="font-size: 18px;" >download</i>
+        <br>
+        <a target=\"_blank\" href=\"https://www.google.com/search?q={} subtitle\">زیرنویس انگلیسی</a>
+        <i class="material-icons" style="font-size: 18px;" >download</i>
+        <br>
+    </div>
+</div>'''.format(
+        path + "[{}]".format(folder_name), file_name, path, path + "زیرنویس فارسی ", path
+    )
 
 
 def normalize_filename(name: str):
@@ -47,7 +50,7 @@ def normalize_filename(name: str):
 f = open(config.save_to + r"\films.html", 'w', encoding="utf-8")
 f.write('''
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <style>
+<style>
     *{font-family: 'Times New Roman', monospace;}
     .container{
         padding-left: 50px;
@@ -66,9 +69,9 @@ f.write('''
     a:visited {
         color: blue;
     }
-    </style>
-    ''')
-    
+</style>
+''')
+f.close()
 
 scan_items(config.library_dir, os.path.basename(config.library_dir), os.listdir(config.library_dir))
 
