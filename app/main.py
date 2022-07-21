@@ -4,14 +4,16 @@ import config
 
 
 def scan_items(base: str, folder_name: str, files_list: list[str]):
-    f = open(config.save_to + r"\films.html", 'a', encoding="utf-8")
     for path in files_list:
         absolute_path = base + "/" + path
         if os.path.isfile(absolute_path) and not path.endswith(".lnk"):
             print(path)
-            f.write(
+
+            file = open(config.save_to + r"\films.html", 'a', encoding="utf-8")
+            file.write(
                 generate_html(normalize_filename(path), folder_name, path)
             )
+            file.close()
         elif os.path.isdir(absolute_path):
             scan_items(absolute_path, os.path.basename(absolute_path), os.listdir(absolute_path))
 
