@@ -24,7 +24,7 @@ def generate_html(path: str, folder_name: str, file_name: str):
     <h1>{}</h1>
     <div class="innerContainer">
         <p>{}</p>
-        <br>
+        <p>{}</p>
         <a target=\"_blank\" href=\"https://www.google.com/search?q={}\">google</a>
         <i class="material-icons" style="font-size: 18px;" >search</i>
         <br>
@@ -36,7 +36,7 @@ def generate_html(path: str, folder_name: str, file_name: str):
         <br>
     </div>
 </div>'''.format(
-        path + "[{}]".format(folder_name), file_name, path, path + "زیرنویس فارسی ", path
+        path + "[{}]".format(folder_name), file_name, fetch_scores_html(path), path, path + "زیرنویس فارسی ", path
     )
 
 
