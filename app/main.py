@@ -1,4 +1,5 @@
 import os
+from fetch_scores import fetch_scores_html
 
 import config
 
@@ -9,7 +10,7 @@ def scan_items(base: str, folder_name: str, files_list: list[str]):
         if os.path.isfile(absolute_path) and not path.endswith(".lnk"):
             print(path)
 
-            with open(config.save_to, 'a', encoding="utf-8") as file:
+            with open(os.path.join(config.save_to, "films.html"), 'a', encoding="utf-8") as file:
                 file.write(
                     generate_html(normalize_filename(path), folder_name, path)
                 )
@@ -48,7 +49,7 @@ def normalize_filename(name: str):
     return name[:split_start_index].replace(".", " ").replace("_", " ")
 
 
-with open(config.save_to, 'w', encoding="utf-8") as f:
+with open(os.path.join(config.save_to, "films.html"), 'w', encoding="utf-8") as f:
     f.write('''
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <style>
