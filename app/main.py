@@ -9,11 +9,10 @@ def scan_items(base: str, folder_name: str, files_list: list[str]):
         if os.path.isfile(absolute_path) and not path.endswith(".lnk"):
             print(path)
 
-            file = open(config.save_to + r"\films.html", 'a', encoding="utf-8")
-            file.write(
-                generate_html(normalize_filename(path), folder_name, path)
-            )
-            file.close()
+            with open(config.save_to, 'a', encoding="utf-8") as file:
+                file.write(
+                    generate_html(normalize_filename(path), folder_name, path)
+                )
         elif os.path.isdir(absolute_path):
             scan_items(absolute_path, os.path.basename(absolute_path), os.listdir(absolute_path))
 
@@ -49,8 +48,8 @@ def normalize_filename(name: str):
     return name[:split_start_index].replace(".", " ").replace("_", " ")
 
 
-f = open(config.save_to + r"\films.html", 'w', encoding="utf-8")
-f.write('''
+with open(config.save_to, 'w', encoding="utf-8") as f:
+    f.write('''
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <style>
     *{font-family: 'Tahoma', monospace;}
@@ -73,7 +72,6 @@ f.write('''
     }
 </style>
 ''')
-f.close()
 
 scan_items(config.library_dir, os.path.basename(config.library_dir), os.listdir(config.library_dir))
 
