@@ -22,10 +22,17 @@ I would also like to add more functionalities like searching for imdb score in f
     git clone https://github.com/mahdialiabadimoghaddam/movie_manager.git
     ```
 
-3. setup ```config.py.sample```
+3. install reuquired packages
+
+     ```bash
+    pip install requests
+    pip install beautifulsoup4
+    ```
+
+4. setup ```config.py.sample```
     * rename it to config.py
     * assign proper values to **all** variables
-4. run the script, using:
+5. run the script, using:
 
     ```bash
     Python main.py
