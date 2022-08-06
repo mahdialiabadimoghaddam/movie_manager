@@ -38,6 +38,8 @@ I would also like to add more functionalities like searching for imdb score in f
     Python main.py
     ```
 
+    *make sure you are NOT connected through VPN*
+
 ## Built with
 
 * [Python](https://www.python.org/)
