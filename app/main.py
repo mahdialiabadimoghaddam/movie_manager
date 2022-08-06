@@ -36,7 +36,7 @@ def generate_html(path: str, folder_name: str, file_name: str):
         <br>
     </div>
 </div>'''.format(
-        path + "[{}]".format(folder_name), file_name, fetch_scores_html(path), path, path + "زیرنویس فارسی ", path
+        folder_name + "/ " + path, file_name, fetch_scores_html(path), path, path + "زیرنویس فارسی ", path
     )
 
 
