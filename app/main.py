@@ -41,12 +41,14 @@ def generate_html(path: str, folder_name: str, file_name: str):
 
 
 def normalize_filename(name: str):
-    split_start_index = 500
-    for keyword in config.ignore_keywords:
-        if (keyword_start_index := name.lower().find(keyword)) != -1:
-            split_start_index = min(keyword_start_index, split_start_index)
+    name = name.replace(".", " ").replace("_", " ").split(" ")
 
-    return name[:split_start_index].replace(".", " ").replace("_", " ")
+    for wordindex in range (len(name)):
+        if name[wordindex] in config.ignore_keywords:
+            name = name[:wordindex]
+            break
+
+    return " ".join(name)
 
 
 with open(os.path.join(config.save_to, "films.html"), 'w', encoding="utf-8") as f:
