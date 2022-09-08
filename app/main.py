@@ -62,8 +62,9 @@ with open(os.path.join(config.save_to, "films.html"), 'w', encoding="utf-8") as 
         padding-top: 10px;
         border: 1px solid;
         border-radius: 25px;
-        margin-left: 10px;
-        margin-right: 300px;
+        margin-left: 10%;
+        margin-right: 10%;
+        margin-bottom: 10px;
     }
     .innerContainer {}
     a {
