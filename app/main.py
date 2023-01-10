@@ -10,12 +10,12 @@ def scan_items(base: str, folder_name: str, files_list: list[str]):
         if os.path.isfile(absolute_path) and not path.endswith(".lnk"):
             print(path)
 
-            with open(os.path.join(config.SAVE_TO, "films.html"), 'a', encoding="utf-8") as file:
-                file.write(
-                    generate_html(normalize_filename(path), folder_name, path)
-                )
+            writeHTML(
+                generate_html(normalize_filename(path), folder_name, path)
+            )
         elif os.path.isdir(absolute_path):
-            scan_items(absolute_path, os.path.basename(absolute_path), os.listdir(absolute_path))
+            scan_items(absolute_path, os.path.basename(
+                absolute_path), os.listdir(absolute_path))
 
 
 def generate_html(path: str, folder_name: str, file_name: str):
@@ -36,8 +36,11 @@ def normalize_filename(name: str):
     return " ".join(name).replace('(', '').replace(')', '')
 
 
-with open(os.path.join(config.SAVE_TO, "films.html"), 'w', encoding="utf-8") as f:
-    f.write(config.HTML_FILE_TEMPLATE)
+def writeHTML(text, mode='a'):
+    with open(f"{config.SAVE_TO}/films.html", mode, encoding="utf-8") as f:
+        f.write(text)
 
+
+writeHTML(config.HTML_FILE_TEMPLATE, 'w')
 scan_items(config.LIBRARY_DIR, os.path.basename(config.LIBRARY_DIR), os.listdir(config.LIBRARY_DIR))
 
