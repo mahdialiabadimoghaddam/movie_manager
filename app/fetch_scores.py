@@ -6,7 +6,7 @@ import re
 session = requests.Session()
 files = os.listdir('htmls')
 
-def fetch_scores_html(movie_name: str):
+def fetchdatafromgoogle(movie_name: str):
     if movie_name in files:
         with open(os.path.join('htmls', movie_name), 'r', encoding='UTF-8') as htmlfile:
             return htmlfile.read()

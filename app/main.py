@@ -1,7 +1,7 @@
 import config
 
 import os
-from fetch_scores import fetch_scores_html
+from fetch_scores import fetchdatafromgoogle
 
 ignoredextensions = []
 
@@ -15,7 +15,7 @@ def scan_items(files_list: list[tuple]):
 
 def generate_html(filename: str, path: str):
     return config.HTML_BOX_TEMPLATE.format(
-        filename, path, fetch_scores_html(filename), filename, filename, filename
+        filename, path, fetchdatafromgoogle(filename), filename, filename, filename
     )
 
 
