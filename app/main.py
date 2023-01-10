@@ -20,7 +20,7 @@ def generate_html(filename: str, path: str):
 
 
 def normalize_filename(name: str):
-    name = name.replace(".", " ").replace("-", " ").replace("_", " ").split(" ")
+    name = name.replace(".", " ").replace("-", " ").replace("_", " ").split(" ").replace('(', '').replace(')', '')
 
     for wordindex in range (len(name)):
         print(name[wordindex].lower())
@@ -28,7 +28,7 @@ def normalize_filename(name: str):
             name = name[:wordindex]
             break
 
-    return " ".join(name).replace('(', '').replace(')', '')
+    return " ".join(name)
 
 def listmovies(dir):
     r = []
