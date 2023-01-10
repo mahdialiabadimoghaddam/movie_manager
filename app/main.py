@@ -1,7 +1,7 @@
+import config
+
 import os
 from fetch_scores import fetch_scores_html
-
-import config
 
 ignoredextensions = []
 
