@@ -14,9 +14,18 @@ def scan_items(files_list: list[tuple]):
 
 
 def generate_html(filename: str, path: str):
-    return config.HTML_BOX_TEMPLATE.format(
-        filename, path, fetchdatafromgoogle(filename), filename, filename, filename
-    )
+    if filename in cachedHTMLs:
+        print("=== reding from cach ===")
+        with open(f'htmls/{filename}', 'r', encoding='UTF-8') as htmlfile:
+            return htmlfile.read()
+    else:
+        print("=== googling... ===")
+        generated_html = config.HTML_BOX_TEMPLATE.format(
+            filename, path, fetchdatafromgoogle(filename), filename, filename, filename
+        )
+        with open(f'htmls/{filename}', 'w', encoding='UTF-8') as htmlfile:
+            htmlfile.write(generated_html)
+        return generated_html
 
 
 def normalize_filename(name: str):
@@ -48,6 +57,8 @@ def writeHTML(text, mode='a'):
         f.write(text)
 
 
+################################################ main() ################################################
+cachedHTMLs = os.listdir('htmls')
 writeHTML(config.HTML_FILE_TEMPLATE, 'w')
 scan_items(listmovies(config.LIBRARY_DIR))
 
