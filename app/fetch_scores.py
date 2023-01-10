@@ -13,13 +13,12 @@ def fetchdatafromgoogle(movie_name: str):
     if len(soups) < 2:
         return ""
 
-    headings = soups[0].get_text().split("‧")
     textresult = ""
+    headings = soups[0].get_text().split("‧")
     if len(headings) == 3:
         textresult = "‧".join(headings[1:]) + "\n"
-    textresult += soups[1].get_text()
+    textresult += "\n" + soups[1].get_text().replace(' · ', '')
 
     textresult = re.sub("  +", "", textresult)
-    textresult = "".join([line.strip()+"\n<br>\n" for line in textresult.split("\n") if not line==''])
+    return textresult.replace ('\n', '\n<br>\n')
     
-    return textresult
