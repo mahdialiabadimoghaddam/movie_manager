@@ -6,6 +6,14 @@ LIBRARY_DIR = r'M:\Media\Films'
 # save generated file to:
 SAVE_TO = r'C:\Users\[YourUser]\Desktop'
 
+# files with these extensions will be processed
+FILE_TYPES = [
+    '.mkv',
+    '.mov',
+    '.mp4',
+    '.avi'
+]
+
 # if any of these keywords are found in a movie name, all the words from that index onward are ignored
 IGNORE_KEYWORDS = [
     "dubbed",
