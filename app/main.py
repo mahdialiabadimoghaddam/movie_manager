@@ -19,24 +19,8 @@ def scan_items(base: str, folder_name: str, files_list: list[str]):
 
 
 def generate_html(path: str, folder_name: str, file_name: str):
-    return '''
-<div class="container">
-    <h1>{}</h1>
-    <div class="innerContainer">
-        <p>{}</p>
-        <p>{}</p>
-        <a target=\"_blank\" href=\"https://www.google.com/search?q={}\">google</a>
-        <i class="material-icons" style="font-size: 18px;" >search</i>
-        <br>
-        <a target=\"_blank\" href=\"https://www.google.com/search?q={}\">زیرنویس فارسی</a>
-        <i class="material-icons" style="font-size: 18px;" >subtitles</i>
-        <br>
-        <a target=\"_blank\" href=\"https://www.google.com/search?q={} subtitle\">زیرنویس انگلیسی</a>
-        <i class="material-icons" style="font-size: 18px;" >subtitles</i>
-        <br>
-    </div>
-</div>'''.format(
-        folder_name + "/ " + path, file_name, fetch_scores_html(path), path, path + "زیرنویس فارسی ", path
+    return config.HTML_BOX_TEMPLATE.format(
+        folder_name + "/ " + path, file_name, fetch_scores_html(path), path, path, path
     )
 
 
@@ -53,29 +37,7 @@ def normalize_filename(name: str):
 
 
 with open(os.path.join(config.SAVE_TO, "films.html"), 'w', encoding="utf-8") as f:
-    f.write('''
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-<style>
-    *{font-family: 'Tahoma', monospace;}
-    .container{
-        padding-left: 50px;
-        padding-bottom: 20px;
-        padding-top: 10px;
-        border: 1px solid;
-        border-radius: 25px;
-        margin-left: 10px;
-        margin-right: 300px;
-    }
-    .innerContainer {}
-    a {
-        text-decoration:none;
-        font-size: 1rem;
-    }
-    a:visited {
-        color: blue;
-    }
-</style>
-''')
+    f.write(config.HTML_FILE_TEMPLATE)
 
 scan_items(config.LIBRARY_DIR, os.path.basename(config.LIBRARY_DIR), os.listdir(config.LIBRARY_DIR))
 
