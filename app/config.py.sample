@@ -1,13 +1,13 @@
 # this is a sample config file. rename it to `config.py` and edit accordingly
 
 # root directory of your library
-library_dir = r'M:\Media\Films'
+LIBRARY_DIR = r'M:\Media\Films'
 
 # save generated file to:
-save_to = r'C:\Users\[YourUser]\Desktop'
+SAVE_TO = r'C:\Users\[YourUser]\Desktop'
 
 # if any of these keywords are found in a movie name, all the words from that index onward are ignored
-ignore_keywords = [
+IGNORE_KEYWORDS = [
     "dubbed",
     "farsi",
     "fa",

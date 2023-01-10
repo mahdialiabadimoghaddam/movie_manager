@@ -10,7 +10,7 @@ def scan_items(base: str, folder_name: str, files_list: list[str]):
         if os.path.isfile(absolute_path) and not path.endswith(".lnk"):
             print(path)
 
-            with open(os.path.join(config.save_to, "films.html"), 'a', encoding="utf-8") as file:
+            with open(os.path.join(config.SAVE_TO, "films.html"), 'a', encoding="utf-8") as file:
                 file.write(
                     generate_html(normalize_filename(path), folder_name, path)
                 )
@@ -45,14 +45,14 @@ def normalize_filename(name: str):
 
     for wordindex in range (len(name)):
         print(name[wordindex].lower())
-        if name[wordindex].lower() in config.ignore_keywords:
+        if name[wordindex].lower() in config.IGNORE_KEYWORDS:
             name = name[:wordindex]
             break
 
     return " ".join(name).replace('(', '').replace(')', '')
 
 
-with open(os.path.join(config.save_to, "films.html"), 'w', encoding="utf-8") as f:
+with open(os.path.join(config.SAVE_TO, "films.html"), 'w', encoding="utf-8") as f:
     f.write('''
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <style>
@@ -77,5 +77,5 @@ with open(os.path.join(config.save_to, "films.html"), 'w', encoding="utf-8") as 
 </style>
 ''')
 
-scan_items(config.library_dir, os.path.basename(config.library_dir), os.listdir(config.library_dir))
+scan_items(config.LIBRARY_DIR, os.path.basename(config.LIBRARY_DIR), os.listdir(config.LIBRARY_DIR))
 
