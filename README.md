@@ -35,7 +35,7 @@ I would also like to add more functionalities like searching for imdb score in f
 5. run the script, using:
 
     ```bash
-    Python main.py
+    Python app/main.py
     ```
 
     *make sure you are NOT connected through VPN*
