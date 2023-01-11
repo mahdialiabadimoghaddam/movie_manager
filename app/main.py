@@ -29,7 +29,7 @@ def generate_html(filename: str, path: str):
 
 
 def normalize_filename(name: str):
-    name = name.replace(".", " ").replace("-", " ").replace("_", " ").split(" ").replace('(', '').replace(')', '')
+    name = name.replace(".", " ").replace("-", " ").replace("_", " ").replace('(', '').replace(')', '').split(" ")
 
     for wordindex in range (len(name)):
         print(name[wordindex].lower())
