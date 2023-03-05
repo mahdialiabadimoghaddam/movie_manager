@@ -1,6 +1,8 @@
 import config
 
 import os
+import math
+import threading
 from fetch_scores import fetchdatafromgoogle
 
 ignoredextensions = []
@@ -58,8 +60,24 @@ def writeHTML(text, mode='a'):
 
 
 ################################################ main() ################################################
+def scaninparallel(allmovies):
+    threadworkload = math.ceil(len(allmovies)/4)
+    threads = [
+        threading.Thread(target=scan_items, args=[allmovies[:threadworkload]]),
+        threading.Thread(target=scan_items, args=[allmovies[threadworkload:threadworkload*2]]),
+        threading.Thread(target=scan_items, args=[allmovies[threadworkload*2:threadworkload*3]]),
+        threading.Thread(target=scan_items, args=[allmovies[threadworkload*3:len(allmovies)]])
+    ]
+    
+    for singlethread in threads:
+        singlethread.start()
+
+    for singlethread in threads:
+        singlethread.join()
+
+
 cachedHTMLs = os.listdir('htmls')
 writeHTML(config.HTML_FILE_TEMPLATE, 'w')
-scan_items(listmovies(config.LIBRARY_DIR))
+scaninparallel(listmovies(config.LIBRARY_DIR))
 
 print(ignoredextensions)
