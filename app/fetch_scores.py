@@ -3,8 +3,21 @@ import requests
 import re
 
 session = requests.Session()
+sessionTTL = 10
+
+
+def refreshsession():
+    global session, sessionTTL
+    if sessionTTL == 0:
+        session = requests.Session()
+        sessionTTL = 10
+
+    sessionTTL -= 1
+
 
 def fetchdatafromgoogle(movie_name: str):
+    refreshsession()
+
     url = f"https://www.google.com/search?q={movie_name}"
     html_result = session.get(url).text
     soup = BeautifulSoup(html_result, 'html.parser').body
