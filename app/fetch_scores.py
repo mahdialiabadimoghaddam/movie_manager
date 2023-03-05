@@ -20,9 +20,24 @@ def fetchdatafromgoogle(movie_name: str):
 
     url = f"https://www.google.com/search?q={movie_name}"
     html_result = session.get(url).text
-    soup = BeautifulSoup(html_result, 'html.parser').body
+    
+    h3s = BeautifulSoup(html_result, 'html.parser').body.find('div', attrs={'id':'main'}).find_all('h3', )
+    base_tag = None
+    for h3 in h3s:
+        previous_parent = None
+        for h3parent in h3.parents:
+            if h3parent.name == 'a':
+                break
+            elif h3parent.name == 'div' and 'id' in h3parent.attrs and h3parent['id'] == 'main':
+                base_tag = previous_parent
+            previous_parent = h3parent
+        else:
+            break
+    else:
+        return ""
+    
+    soups = base_tag.find_all("div", attrs={"class": "kCrYT"}, recursive=True)
 
-    soups = soup.find_all("div", attrs={"class": "kCrYT"}, recursive=True)
     if len(soups) < 2:
         return ""
 
